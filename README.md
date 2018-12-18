@@ -110,7 +110,19 @@ Install Python 2.7.x and set npm to use. e.g.
 
 
 ### Train Watson Services
-Run following commands to train Watson Assistant and Discovery services:
+Run following commands to setup Watson Assistant:
+```
+npm run train 
+```
+
+Follow the steps here to setup the Discovery instance:
+<link to lab>
+
+Enter the Discovery details into the app:
+1. Open the .env file
+
+2. Enter the environment_id, collection_id, and configuration_id for the collection used in Discovery 
+
 
 ### Setting up the OpenWhisk Back-end
 1. Install the Openwhisk [Command Line Interface](https://console.bluemix.net/openwhisk/learn/cli).
@@ -144,12 +156,7 @@ All that's left is to serve your static files locally. You should see the app ru
 npm start
 ```
 
-Example commands that can be executed by the Watson Assistant service are:
-```
-turn on windshield wipers
-play music
-```
-In addition to conversational commands, you can also ask questions that you would expect to have answered in your car manual. For example:
+The app can now answer questions from the documents that were ingested in Discovery. For example:
 ```
 How do I check my tire pressure
 How do I turn on cruise control
