@@ -52,7 +52,7 @@ function main(params) {
 
       discovery.query({environment_id: params.environment_id,
         collection_id: params.collection_id,
-        query: params.input.text
+        natural_language_query: params.input.text
       }, function(err, data) {
         if (err) {
           return reject(err);
@@ -60,14 +60,14 @@ function main(params) {
         var i = 0;
         var discoveryResults = [];
         while (data.results[i] && i < 3 ) {
-          let body = data.results[i].contentHtml;
+          let body = data.results[i].text;
           discoveryResults[i] = {
             body: body,
             bodySnippet: (body.length < 144 ? body : (body.substring(0,144) + '...')).replace(/<\/?[a-zA-Z]+>/g, ''),
             confidence: data.results[i].score,
             id: data.results[i].id,
-            sourceUrl: data.results[i].sourceUrl,
-            title: data.results[i].title
+            sourceUrl: "https://box.com",
+            title: data.results[i].subtitle
           };
           i++;
         }
