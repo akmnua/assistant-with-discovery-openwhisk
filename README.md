@@ -1,11 +1,11 @@
-# Watson Assistant (formerly Conversation) with Discovery - OpenWhisk
+# Watson Assistant (formerly Conversation) with Discovery - Cloud Functions
 
 
 [![Build Status](https://travis-ci.org/watson-developer-cloud/assistant-with-discovery-openwhisk.svg?branch=master)](https://travis-ci.org/watson-developer-cloud/assistant-with-discovery-openwhisk) [![codecov](https://codecov.io/gh/watson-developer-cloud/assistant-with-discovery-openwhisk/branch/master/graph/badge.svg)](https://codecov.io/gh/watson-developer-cloud/assistant-with-discovery-openwhisk)
 
-This application shows the capabilities of Watson Assistant and Discovery services to work together to find answers on a given query. In this sample app, the user is chatting with a virtual car dashboard, giving it commands in plain English such as "Turn on the wipers," "Play me some music," or "Let's find some food." If the user makes a request and Watson Assistant is not confident in its answer (e.g. "How do I check my tire pressure?"), Discovery will search the car manual and return the most relevant results, if relevant materials exist.
+This application shows the capabilities of Watson Assistant and Discovery services to work together to find answers on a given query. In this sample, the Assistant is empty and only calls out to Discovery. It can work with any documents loaded into Discovery that contain certain fields.
 
-This demo is a reworking of [a previous one](https://github.com/watson-developer-cloud/assistant-with-discovery) but with an OpenWhisk back-end and React front-end. OpenWhisk is IBM's "serverless" offering, allowing users to upload functions to the cloud, call them via REST API, and pay only by the millisecond of usage.
+This demo is a reworking of [a previous one](https://github.com/watson-developer-cloud/assistant-with-discovery) but with an cloud functions back-end and React front-end. Cloud Functions is IBM's "serverless" offering, allowing users to upload functions to the cloud, call them via REST API, and pay only by the millisecond of usage.
 
 ## Table of Contents
 * [How it Works](#how-it-works)
@@ -24,8 +24,8 @@ This demo is a reworking of [a previous one](https://github.com/watson-developer
 
 Under the hood, there are two components to this app:
 * One is the front-end, which is simply static assets (HTML, CSS, and React), it uses CSS with Sass for cleaner, more maintainable source code.
-* The other is the OpenWhisk actions:
-  * When the user inputs text, the UI sends the current context and input to the OpenWhisk sequence. These are processed by the Watson Assistant service and returned, with an output and new context. The results are sent to the next action.
+* The other is the Cloud Function actions:
+  * When the user inputs text, the UI sends the current context and input to the Cloud Function sequence. These are processed by the Watson Assistant service and returned, with an output and new context. The results are sent to the next action.
   * The Discovery action checks for a flag from the Watson Assistant output, and if it is present takes the original input and queries the manual with it. If there is no flag, the Watson Assistant results pass through the function unchanged. The Sequence returns the output and updated context back to the UI.
 
 
@@ -156,12 +156,7 @@ All that's left is to serve your static files locally. You should see the app ru
 npm start
 ```
 
-The app can now answer questions from the documents that were ingested in Discovery. For example:
-```
-How do I check my tire pressure
-How do I turn on cruise control
-How do I improve fuel efficiency
-How do I connect my phone to bluetooth
-```
+The app can now answer questions from the documents that were ingested in Discovery.
+
 ## License
 Licensed under [Apache 2.0](LICENSE).
