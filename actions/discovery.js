@@ -66,7 +66,8 @@ function main(params) {
             bodySnippet: (body.length < 144 ? body : (body.substring(0,144) + '...')).replace(/<\/?[a-zA-Z]+>/g, ''),
             confidence: data.results[i].score,
             id: data.results[i].id,
-            sourceUrl: "data.results[i].metadata.source.url",
+            session_token: data.session_token
+            sourceUrl: ("metadata" in data.results[i] ? data.results[i].metadata.source.url : ""),
             title: data.results[i].subtitle
           };
           i++;
